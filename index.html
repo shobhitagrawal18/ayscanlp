@@ -13,16 +13,24 @@
 
       gtag('config', 'G-0YFJC8D8K4');
 
-      // Function to track link clicks
+      // Function to track link clicks with more detailed event
       function trackLinkClick(brand) {
-        // Prevent potential XSS by sanitizing the brand name
-        const sanitizedBrand = String(brand).replace(/[<>&'"]/g, '');
+        try {
+          // Log to console for debugging
+          console.log('Tracking brand click:', brand);
 
-        gtag('event', 'click', {
-          'event_category': 'Brand Link',
-          'event_label': sanitizedBrand,
-          'transport_type': 'beacon'
-        });
+          // Send event with more comprehensive parameters
+          gtag('event', 'brand_link_click', {
+            'brand_name': brand,
+            'page_location': window.location.href,
+            'page_path': window.location.pathname,
+            'event_category': 'Outbound Link',
+            'event_label': brand,
+            'transport_type': 'beacon'
+          });
+        } catch (error) {
+          console.error('Error in tracking:', error);
+        }
       }
     </script>
 
