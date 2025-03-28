@@ -20,7 +20,7 @@
           console.log('Tracking brand click:', brand);
 
           // Send event with more comprehensive parameters
-          gtag('event', 'brand_link_click', {
+          gtag('event', brand, {
             'brand_name': brand,
             'page_location': window.location.href,
             'page_path': window.location.pathname,
